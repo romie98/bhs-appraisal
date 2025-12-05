@@ -1,5 +1,6 @@
 // Global API configuration
-export const API_BASE = "https://bhs-appraisal.onrender.com"
+export const API_BASE_URL = "https://bhs-appraisal-backend-production.up.railway.app";
+
 
 /**
  * Construct a full API URL from a path
