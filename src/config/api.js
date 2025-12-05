@@ -1,5 +1,5 @@
 // Global API configuration
-export const API_BASE_URL = "https://bhs-appraisal-backend-production.up.railway.app";
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 /**
@@ -10,7 +10,7 @@ export const API_BASE_URL = "https://bhs-appraisal-backend-production.up.railway
 export function apiUrl(path) {
   // Ensure path starts with /
   const normalizedPath = path.startsWith("/") ? path : `/${path}`
-  return `${API_BASE}${normalizedPath}`
+  return `${API_BASE_URL}${normalizedPath}`
 }
 
 
