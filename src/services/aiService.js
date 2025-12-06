@@ -1,9 +1,9 @@
 // AI Service for OpenAI integration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+import { apiUrl } from '../config/api'
 
 // Helper function for API calls
 async function apiCall(endpoint, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const response = await fetch(apiUrl(endpoint), {
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -261,7 +261,7 @@ export const aiApi = {
    * @returns {string} URL to HTML report
    */
   getAppraisalReportHtmlUrl: (reportId) => {
-    return `${API_BASE_URL}/ai/appraisal-report/${reportId}/html`
+    return apiUrl(`/ai/appraisal-report/${reportId}/html`)
   },
 
   /**
@@ -270,7 +270,7 @@ export const aiApi = {
    * @returns {string} URL to PDF report
    */
   getAppraisalReportPdfUrl: (reportId) => {
-    return `${API_BASE_URL}/ai/appraisal-report/${reportId}/pdf`
+    return apiUrl(`/ai/appraisal-report/${reportId}/pdf`)
   },
 }
 

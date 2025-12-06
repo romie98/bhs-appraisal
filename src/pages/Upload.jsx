@@ -11,7 +11,7 @@ import {
   ChevronUp,
 } from 'lucide-react'
 import { photoLibraryApi } from '../services/markbookApi'
-import { API_BASE_URL } from '../config/api'
+import { apiUrl } from '../config/api'
 
 // Simple static teacher id placeholder – swap for real auth later
 const TEACHER_ID = 'default-teacher-id'
@@ -408,7 +408,7 @@ function Upload() {
                 >
                   <div className="bg-gray-200 aspect-video overflow-hidden">
                     <img
-                      src={`${API_BASE_URL}/${photo.file_path}`}
+                      src={apiUrl(photo.file_path.startsWith('/') ? photo.file_path : `/${photo.file_path}`)}
                       alt="Photo evidence"
                       className="w-full h-full object-cover"
                       onError={(e) => {

@@ -1,6 +1,7 @@
 import { FileText, Calendar, ExternalLink, Download, Edit, Trash2, Image, File, FileCode, FileVideo, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { apiUrl } from '../config/api'
 
 // Helper functions for file type detection
 const isImage = (n) => /\.(jpg|jpeg|png|gif|webp)$/i.test(n)
@@ -139,9 +140,9 @@ function EvidenceCard({ evidence, onEdit, onDelete }) {
       
       if (!localUrl.startsWith('http') && !localUrl.startsWith('file://')) {
         if (localUrl.startsWith('/mnt/data')) {
-          localUrl = `/api/files${localUrl}`
+          localUrl = apiUrl(`/api/files${localUrl}`)
         } else if (localUrl.startsWith('/')) {
-          localUrl = `/api/files${localUrl}`
+          localUrl = apiUrl(`/api/files${localUrl}`)
         }
       }
       
@@ -184,10 +185,10 @@ function EvidenceCard({ evidence, onEdit, onDelete }) {
       if (!localUrl.startsWith('http') && !localUrl.startsWith('file://')) {
         // Transform /mnt/data paths to server endpoint
         if (localUrl.startsWith('/mnt/data')) {
-          localUrl = `/api/files${localUrl}`
+          localUrl = apiUrl(`/api/files${localUrl}`)
         } else if (localUrl.startsWith('/')) {
           // Absolute path - use as is or with API prefix
-          localUrl = `/api/files${localUrl}`
+          localUrl = apiUrl(`/api/files${localUrl}`)
         }
       }
       

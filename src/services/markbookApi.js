@@ -1,9 +1,9 @@
 // API service for Mark Book & Register system
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+import { apiUrl } from '../config/api'
 
 // Helper function for API calls
 async function apiCall(endpoint, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const response = await fetch(apiUrl(endpoint), {
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -149,7 +149,7 @@ export const lessonPlansApi = {
     formData.append('title', title)
     formData.append('teacher_id', teacherId)
     
-    const response = await fetch(`${API_BASE_URL}/lesson-plans/upload`, {
+    const response = await fetch(apiUrl('/lesson-plans/upload'), {
       method: 'POST',
       body: formData,
     })
@@ -182,7 +182,7 @@ export const photoLibraryApi = {
     formData.append('file', file)
     formData.append('teacher_id', teacherId)
 
-    const response = await fetch(`${API_BASE_URL}/photo-library/upload`, {
+    const response = await fetch(apiUrl('/photo-library/upload'), {
       method: 'POST',
       body: formData,
     })
@@ -209,7 +209,7 @@ export const photoLibraryApi = {
 export const exportApi = {
   exportMarkBookPDF: async (grade, filters) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/export/markbook/${grade}`)
+      const response = await fetch(apiUrl(`/export/markbook/${grade}`))
       if (!response.ok) throw new Error('Failed to generate PDF')
       
       const blob = await response.blob()
@@ -228,7 +228,7 @@ export const exportApi = {
   },
   exportRegisterPDF: async (grade, dateRange) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/export/attendance/${grade}`)
+      const response = await fetch(apiUrl(`/export/attendance/${grade}`))
       if (!response.ok) throw new Error('Failed to generate PDF')
       
       const blob = await response.blob()
@@ -247,7 +247,7 @@ export const exportApi = {
   },
   exportStudentProgressPDF: async (studentId) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/export/student/${studentId}`)
+      const response = await fetch(apiUrl(`/export/student/${studentId}`))
       if (!response.ok) throw new Error('Failed to generate PDF')
       
       const blob = await response.blob()

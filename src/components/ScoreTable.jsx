@@ -199,3 +199,4 @@ export default function ScoreTable({ students, assessmentId, totalMarks, classId
 
 
 
+
